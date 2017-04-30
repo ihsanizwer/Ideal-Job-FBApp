@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ResourceDataHolder {
-    int hello;
+
     private static volatile Map<String, String> resourceMap;
     private static ResourceDataHolder resourceDataHolder;
 
