@@ -2,9 +2,9 @@ package com.tharindu.oauth.facebookapp.data;
 
 import java.util.HashMap;
 import java.util.Map;
-//testing git
-public class ResourceDataHolder {
 
+public class ResourceDataHolder {
+    int hello;
     private static volatile Map<String, String> resourceMap;
     private static ResourceDataHolder resourceDataHolder;
 
