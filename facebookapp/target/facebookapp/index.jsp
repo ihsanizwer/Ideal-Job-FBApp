@@ -2,33 +2,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Lobster+Two" rel="stylesheet">
     <style>
-        .button {
-            background-color: #4286f4;
-            border: none;
-            color: white;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
+        body{
+            font-family: 'Lobster Two', cursive;
+        }
+        #load{
+
         }
     </style>
-    <title>User Feed Viewer</title>
+    <title>Generate your profile statistics!</title>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#goButton").click(makeRequest);
         });
         function makeRequest() {
+            var showdiv = document.getElementById('showLoad');
+            var hide = document.getElementById('hide');
+            hide.style.display = 'none';
+            showdiv.style.display ='block';
 // Define properties
             var AUTH_ENDPOINT = "https://www.facebook.com/dialog/oauth";
             var RESPONSE_TYPE = "code";
-            var CLIENT_ID = "183994178774345";
-            var REDIRECT_URI = "http://54.149.197.89:8080/facebookapp/callback";
-            var SCOPE = "public_profile user_posts user_friends user_photos publish_actions";
+            var CLIENT_ID = "932702550203248";
+            var REDIRECT_URI = "http://ec2-34-210-226-241.us-west-2.compute.amazonaws.com:8080/facebookapp/callback";
+            var SCOPE = "public_profile user_posts user_photos";
 // Build authorization request endpoint
             var requestEndpoint = AUTH_ENDPOINT + "?" +
                     "response_type=" + encodeURIComponent(RESPONSE_TYPE) + "&" +
@@ -41,13 +40,49 @@
     </script>
 </head>
 <body>
-<h1>Know your status updates !</h1>
+<div align="center">
+    <img src="images/button_likatite.png">
+<h1>Get your profile rated!</h1>
+    <div id="hide" style="display:block ">
+    Likatite will analyze your profile and rate it. Here's what we'll do.
+    <br>
+    <br>
 
-<img src="images/status-update-teeshirt.jpg"/>
+        Find how many times you posted in facebook<br>
+        Find the total amount of likes for all your posts<br>
+        Find the average number of likes per post<br>
+        Find the most liked post of yours<br>
+        Find how many people liked your most liked post<br>
+        Find the total number of comments on your posts<br>
+        Find the average number of comments per post<br>
+        Rate your profile based on the info we found (Kids/Men/Legends)</br>
+        <br>
+        <br>
+    <br>
+    Click on the button below to get started with facebook.
+        <br>
+    </div>
+</div>
+
+<div id="showLoad" align="center" style="display: none">
+    <img src="images/loading.gif" id="load">
+    <br>
+    <br>
+    Please be patient while Likatite analyze your profile. It may take some time to analyze as it analyzes your entire timeline.
+</div>
+
 <br/>
 <br/>
 
-<button id="goButton" type="button" class="button">Continue with Facebook !</button>
-<div id="results"></div>
+<div align="center">
+    <button id="goButton" type="button"><img src="images/button.png"/></button>
+</div>
+
+
+<br>
+<a target="_blank" href="http://privacypolicies.com/privacy/view/bUrnLd">Privacy policy</a>
+
+<br>
+
 </body>
 </html>

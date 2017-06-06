@@ -1,9 +1,6 @@
 package com.tharindu.oauth.facebookapp.servlet;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -45,9 +42,9 @@ public class OAuthCallbackListener extends HttpServlet {
             final String TOKEN_ENDPOINT =
                     "https://graph.facebook.com/oauth/access_token";
             final String GRANT_TYPE = "authorization_code";
-            final String REDIRECT_URI = "http://54.149.197.89:8080/facebookapp/callback";
-            final String CLIENT_ID = "183994178774345";
-            final String CLIENT_SECRET = "dc321ebea29283cd4092b6b476ccadbd";
+            final String REDIRECT_URI = "http://ec2-34-210-226-241.us-west-2.compute.amazonaws.com:8080/facebookapp/callback";
+            final String CLIENT_ID = "932702550203248";
+            final String CLIENT_SECRET = "0255223bbb3f524b9f124c87f5b6e466";
             // Generate POST request
             HttpPost httpPost = new HttpPost(TOKEN_ENDPOINT +
                     "?grant_type=" + URLEncoder.encode(GRANT_TYPE,
@@ -84,7 +81,10 @@ public class OAuthCallbackListener extends HttpServlet {
                     Object obj = parser.parse(responseProperty);
                     JSONObject jsonobj = (JSONObject) obj;
                     accessToken = jsonobj.get("access_token").toString();
-                    System.out.println("Access token: " + accessToken);
+                    //System.out.println("Access token: " + accessToken);
+                    PrintWriter out = response.getWriter();
+                    out.println("Please wait you are being redirected.");
+                    out.print(accessToken);
 
                     fileOperations.writeToFile(accessToken);
 
@@ -95,6 +95,7 @@ public class OAuthCallbackListener extends HttpServlet {
             }
             // Request profile and feed data with access token
 // Request feed data with access token
+            /*
             String requestUrl =
                     "https://graph.facebook.com/v2.8/me/feed?limit=25";
 
@@ -110,6 +111,7 @@ public class OAuthCallbackListener extends HttpServlet {
                     new InputStreamReader(httpResponse.getEntity().getContent()));
             String feedJson = bufferedReader.readLine();
             //System.out.println("Feed data: " + feedJson);
+            */
 
 
             httpClient.close();
@@ -117,9 +119,9 @@ public class OAuthCallbackListener extends HttpServlet {
             //Generate a unique key
             int randomNum = ThreadLocalRandom.current().nextInt(1, 9999999);
             //Add the facebook response data to the resources map along with the key
-            ResourceDataHolder.getInstance().addResource(String.valueOf(randomNum), feedJson);
+            ResourceDataHolder.getInstance().addResource(String.valueOf(randomNum), accessToken);
 
-            fileOperations.writeToFile(feedJson);
+            fileOperations.writeToFile(accessToken);
 
             //request.setAttribute("user_resource", feedJson);
 
