@@ -36,4 +36,4 @@ Instructions for setting up and running:
 8. Log In with facebook through the App. Accept to share resources through facebook and generate the results.
 
 For more information, please read the following blog:
-https://alphagreytux.wordpress.com/2017/05/19/likatite-facebook-application-based-on-oauth-2-0-protocol/
+http://hackerintent.co.nf/2017/05/19/facebook-application-oauth-2-0/
